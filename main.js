@@ -1,21 +1,20 @@
-const app = new PIXI.Application({ width: 800, height: 600 });
-document.body.appendChild(app.view);
+import { Application, Sprite } from "pixi.js";
+import { loadAssets } from "./assets";
 
-const bunny = PIXI.Sprite.from("img/bunny.png");
-app.stage.addChild(bunny);
+const app = new Application({
+  view: document.getElementById("pixi-canvas"),
+  resolution: window.devicePixelRatio || 1,
+  autoDensity: true,
+  backgroundColor: "black",
+  width: 640,
+  height: 480,
+});
 
-bunny.interactive = true;
+const bunny = Sprite.from("bunny.png");
+
 bunny.anchor.set(0.5);
+
 bunny.x = app.screen.width / 2;
 bunny.y = app.screen.height / 2;
 
-bunny.on("pointerdown", (event) => {
-  console.log("FAT bunnay!")
-  bunny.scale.x *= 1.25;
-});
-
-let elapsed = 0.0;
-app.ticker.add((delta) => {
-  elapsed += delta;
-  bunny.x = (app.screen.width/2) + Math.cos(elapsed/50) * 100;
-});
+app.stage.addChild(bunny);
