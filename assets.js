@@ -7,6 +7,7 @@ const manifest = {
         {name: "bunny", srcs: "bunny.png"},
         {name: "boom", srcs: "boom.json"},
         {name: "field", srcs: "quiet_field.png"},
+        //{name: "speed", scrs: "quiet_field.png"},
       ],
     },
   ],

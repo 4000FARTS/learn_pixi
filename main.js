@@ -1,4 +1,4 @@
-import { Application, Sprite } from "pixi.js";
+import { Application, Assets, SimplePlane, Sprite } from "pixi.js";
 import { loadAssets } from "./assets";
 
 const app = new Application({
@@ -9,12 +9,11 @@ const app = new Application({
   width: 640,
   height: 480,
 });
-
-const bunny = Sprite.from("bunny.png");
-
-bunny.anchor.set(0.5);
-
-bunny.x = app.screen.width / 2;
-bunny.y = app.screen.height / 2;
-
-app.stage.addChild(bunny);
+async function gameloaded(){
+  const texas = await Assets.loadBundle("main")
+   const background = new SimplePlane(texas.bunny)
+   background.width = app.screen.width
+   background.height = app.screen.height
+   app.stage.addChild(background)
+}
+loadAssets(gameloaded)
